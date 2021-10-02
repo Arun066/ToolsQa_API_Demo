@@ -24,7 +24,7 @@
           }
         }
       ],
-      "_postman_id": "7d58e312-4fa9-43e7-be79-c48afcfb29c7",
+      "id": "7d58e312-4fa9-43e7-be79-c48afcfb29c7",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -72,7 +72,7 @@
           }
         }
       ],
-      "_postman_id": "898f4368-36f3-46f3-9b77-06974f8a6bfa",
+      "id": "898f4368-36f3-46f3-9b77-06974f8a6bfa",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -105,18 +105,23 @@
         {
           "listen": "test",
           "script": {
-            "id": "6fc71f8d-0643-4637-a342-9486360521bb",
+            "id": "341c1748-e003-4cc8-ab7b-cdd11271174d",
             "exec": [
               "pm.test(\"Status code is 200\", function () {\r",
               "pm.expect(pm.response.code).to.be.oneOf([200]);\r",
-              "pm.globals.set(\"isbn\",JSON.response.books[0].isbn)\r",
+              "});\r",
+              "pm.test(\"response if json\", function () {\r",
+              "pm.response.to.be.json\r",
+              "var jsonData=JSON.parse(responseBody)\r",
+              "pm.globals.set(\"isbn\", jsonData.books[2].isbn);\r",
+              "pm.globals.set(\"replaceIsbn\",jsonData.books[1].isbn)\r",
               "});"
             ],
             "type": "text/javascript"
           }
         }
       ],
-      "_postman_id": "caa61c84-d684-498b-8a5b-945c19c17c09",
+      "id": "caa61c84-d684-498b-8a5b-945c19c17c09",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -159,7 +164,7 @@
           }
         }
       ],
-      "_postman_id": "2aa60707-dbcb-4622-938a-bf983e4709f3",
+      "id": "2aa60707-dbcb-4622-938a-bf983e4709f3",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -202,7 +207,7 @@
           }
         }
       ],
-      "_postman_id": "d8049102-9f37-479f-94ac-834f371a2447",
+      "id": "d8049102-9f37-479f-94ac-834f371a2447",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -231,7 +236,7 @@
     },
     {
       "name": "Get Book",
-      "_postman_id": "d3443865-f528-4568-8fa3-d78486142ca2",
+      "id": "d3443865-f528-4568-8fa3-d78486142ca2",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -276,7 +281,7 @@
           }
         }
       ],
-      "_postman_id": "d6d9762b-3463-4140-b137-a219c1e123f9",
+      "id": "d6d9762b-3463-4140-b137-a219c1e123f9",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -322,7 +327,7 @@
           }
         }
       ],
-      "_postman_id": "15a65f82-8627-4be2-adb3-427723f90de2",
+      "id": "15a65f82-8627-4be2-adb3-427723f90de2",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -351,7 +356,7 @@
     },
     {
       "name": "Replace ISBN",
-      "_postman_id": "9b8ada67-c5a0-46a8-ba44-de07aee4fd47",
+      "id": "9b8ada67-c5a0-46a8-ba44-de07aee4fd47",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -373,7 +378,7 @@
     },
     {
       "name": "Get Newly created book",
-      "_postman_id": "d2039b8f-0471-490a-b743-b6a4de0d592a",
+      "id": "d2039b8f-0471-490a-b743-b6a4de0d592a",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -410,10 +415,9 @@
   ],
   "variable": [
     {
-      "id": "ef73655c-eebf-4980-b5e8-2dcbcec3be09",
+      "id": "e3f0757f-498d-41fc-a354-d4a9fa6bbcee",
       "key": "varISBN",
-      "value": "9781449365035",
-      "type": "string"
+      "value": "9781449365035"
     }
   ]
 }
