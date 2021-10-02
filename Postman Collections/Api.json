@@ -1,0 +1,419 @@
+{
+  "info": {
+    "_postman_id": "46f370e8-46ef-4cd2-a5bb-2b1104e0e22b",
+    "name": "ToolsQA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Generate Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e7cb912f-9c8e-4afa-b0ad-de01a49e365e",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+              "});\r",
+              "pm.test(\"response if json\", function () {\r",
+              "pm.response.to.be.json\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7d58e312-4fa9-43e7-be79-c48afcfb29c7",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "{{password}}",
+            "username": "{{userName}}"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/Account/v1/GenerateToken"
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b121fc28-af1c-4873-8167-9ec9bc49e0b5",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+              "});\r",
+              "pm.test(\"response if json\", function () {\r",
+              "pm.response.to.be.json\r",
+              "var jsonData=JSON.parse(responseBody)\r",
+              "pm.globals.set(\"userId\", jsonData.userId);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "898f4368-36f3-46f3-9b77-06974f8a6bfa",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "{{password}}",
+            "username": "{{userName}}"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"userName\":\"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/Account/v1/Login"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Books",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "6fc71f8d-0643-4637-a342-9486360521bb",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+              "pm.globals.set(\"isbn\",JSON.response.books[0].isbn)\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "caa61c84-d684-498b-8a5b-945c19c17c09",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "{{password}}",
+            "username": "{{userName}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/BookStore/v1/Books"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Books",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 204\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([204]);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "id": "98c19996-5263-4f84-8929-d43a3916e9bb"
+          }
+        }
+      ],
+      "_postman_id": "2aa60707-dbcb-4622-938a-bf983e4709f3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "P@ssw0rd",
+            "username": "demoqa"
+          }
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"isbn\": \"9781449325862\",\r\n  \"userId\": \"bda34c79-5ff9-4b77-8452-50b0ef1fa975\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://demoqa.com/BookStore/v1/Book"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "id": "6ae3d2e3-ee05-481d-b790-1c5b1fbdcce2"
+          }
+        }
+      ],
+      "_postman_id": "d8049102-9f37-479f-94ac-834f371a2447",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "P@ssw0rd",
+            "username": "demoqa"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userId\": \"bda34c79-5ff9-4b77-8452-50b0ef1fa975\",\r\n  \"collectionOfIsbns\": [\r\n    {\r\n      \"isbn\": \"9781449365035\"\r\n    }\r\n  ]\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://demoqa.com/BookStore/v1/Books"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Book",
+      "_postman_id": "d3443865-f528-4568-8fa3-d78486142ca2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://demoqa.com/BookStore/v1/Book?ISBN=9781449325862",
+          "protocol": "https",
+          "host": [
+            "demoqa",
+            "com"
+          ],
+          "path": [
+            "BookStore",
+            "v1",
+            "Book"
+          ],
+          "query": [
+            {
+              "key": "ISBN",
+              "value": "9781449325862"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d0a9933a-5385-478a-a473-a294253cd1b9",
+            "exec": [
+              "pm.test(\"Status code is 204\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([204]);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "d6d9762b-3463-4140-b137-a219c1e123f9",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "P@ssw0rd",
+            "username": "demoqa"
+          }
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"isbn\": \"{{isbn}}\",\r\n  \"userId\": \"{{userId}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://demoqa.com/BookStore/v1/Book"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Book again",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "232c7ab2-5955-4780-86f0-dfe1baf2e4b6",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+              "});\r",
+              "pm.test(\"response if json\", function () {\r",
+              "pm.response.to.be.json\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "15a65f82-8627-4be2-adb3-427723f90de2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "{{password}}",
+            "username": "{{userName}}"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userId\": \"{{userId}}\",\r\n  \"collectionOfIsbns\": [\r\n    {\r\n      \"isbn\": \"{{isbn}}\"\r\n    }\r\n  ]\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/BookStore/v1/Books"
+      },
+      "response": []
+    },
+    {
+      "name": "Replace ISBN",
+      "_postman_id": "9b8ada67-c5a0-46a8-ba44-de07aee4fd47",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userId\": \"bda34c79-5ff9-4b77-8452-50b0ef1fa975\",\r\n  \"isbn\": \"1000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://demoqa.com/BookStore/v1/Books/{{varISBN}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Newly created book",
+      "_postman_id": "d2039b8f-0471-490a-b743-b6a4de0d592a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": {
+            "password": "{{password}}",
+            "username": "{{userName}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/BookStore/v1/Book?ISBN={{replaceIsbn}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "BookStore",
+            "v1",
+            "Book"
+          ],
+          "query": [
+            {
+              "key": "ISBN",
+              "value": "{{replaceIsbn}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "id": "ef73655c-eebf-4980-b5e8-2dcbcec3be09",
+      "key": "varISBN",
+      "value": "9781449365035",
+      "type": "string"
+    }
+  ]
+}
